@@ -89,7 +89,7 @@ Window {
 
         SpinBox {
             id: widthSpin
-            width: parent.width - parent.width / 4
+            width: (parent.width - parent.width / 4) - 5
             from: 10
             to: 200
             value: 30

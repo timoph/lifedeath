@@ -1,5 +1,9 @@
 QT += quick
 
+equals(QT_MAJOR_VERSION, 6) {
+    QT += quickcontrols2
+}
+
 CONFIG += c++11
 
 # You can make your code fail to compile if it uses deprecated APIs.
