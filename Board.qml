@@ -4,8 +4,8 @@ import "qrc:/scripts.js" as Script
 Grid {
     id: board
     anchors.left: parent.left
-    width: 480
-    height: 480
+    width: parent.width
+    height: parent.height
     columns: Script.cols
 
     property bool simulationRunning: false

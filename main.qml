@@ -22,8 +22,8 @@ Window {
         id: board
         anchors.left: parent.left
         //anchors.leftMargin: 5
-        width: 480
-        height: 480
+        width: appWindow.width - (appWindow.width / 2.5)
+        height: width
         source: "qrc:/Board.qml"
 
         function handleStopped() {
@@ -118,7 +118,7 @@ Window {
             id: titleText
             horizontalAlignment: Text.AlignHCenter
             font.pointSize: 20
-            text: qsTr("Life (and some death)")
+            text: qsTr("Life")
             color: "#fff"
         }
 
@@ -164,7 +164,7 @@ Window {
             font.pointSize: 12
             wrapMode: Text.WordWrap
             color: "#fff"
-            text: "Set alive cells and click start to begin."
+            text: "Select alive cells and click start to begin."
         }
     }
 }
