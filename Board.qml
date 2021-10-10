@@ -4,7 +4,6 @@ import "qrc:/scripts.js" as Script
 Grid {
     id: board
     anchors.left: parent.left
-    anchors.leftMargin: 5
     width: 480
     height: 480
     columns: Script.cols

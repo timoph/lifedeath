@@ -21,7 +21,7 @@ Window {
     Loader {
         id: board
         anchors.left: parent.left
-        anchors.leftMargin: 5
+        //anchors.leftMargin: 5
         width: 480
         height: 480
         source: "qrc:/Board.qml"
