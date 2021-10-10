@@ -1,8 +1,8 @@
 .pragma library
 
 // these control the game board
-var rows = 40;
-var cols = 40;
+var rows = 30;
+var cols = 30;
 
 var boardSize = rows * cols;
 var objects = Array(boardSize)
