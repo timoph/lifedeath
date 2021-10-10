@@ -17,7 +17,7 @@ function init(width) {
 function createBlock(parentObject, size, objectIndex) {
     let component = Qt.createComponent("qrc:/Block.qml");
     let properties;
-    properties = {x: 0, y: 0, width: size, height: size};
+    properties = {};
     objects[objectIndex] = component.createObject(parentObject, properties);
 }
 

@@ -3,8 +3,10 @@ import "qrc:/scripts.js" as Script
 
 Rectangle {
     id: rootItem
-    implicitHeight: 25
-    implicitWidth: 25
+//    implicitHeight: 25
+//    implicitWidth: 25
+    width: parent.width
+    height: parent.height
     radius: 45
     color: "#000"
     state: "dead"
