@@ -14,6 +14,12 @@ function createBlock(parentObject, size, objectIndex) {
     objects[objectIndex] = component.createObject(parentObject, properties);
 }
 
+function clear() {
+    for(let i = 0; i < boardSize; i++) {
+        objects[i].state = "dead";
+    }
+}
+
 function toggleState(objectIndex) {
     if(objects[objectIndex].state === "alive") {
         objects[objectIndex].state = "dead"

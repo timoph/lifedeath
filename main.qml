@@ -72,6 +72,20 @@ Window {
         onClicked: appWindow.simulationRunning = !appWindow.simulationRunning
     }
 
+    Button {
+        id: clearButton
+        width: appWindow.width - board.width - 10
+        height: 40
+        anchors.bottom: startStopButton.top
+        anchors.bottomMargin: 5
+        anchors.left: board.right
+        anchors.leftMargin: 5
+        text: "clear"
+        enabled: !simulationRunning
+
+        onClicked: Script.clear()
+    }
+
     Column {
         id: infoColumn
         anchors.left: board.right
