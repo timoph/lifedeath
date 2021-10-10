@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>scripts.js</file>
         <file>Block.qml</file>
+        <file>Board.qml</file>
     </qresource>
 </RCC>

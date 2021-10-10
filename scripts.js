@@ -7,6 +7,13 @@ var cols = 40;
 var boardSize = rows * cols;
 var objects = Array(boardSize)
 
+function init(width) {
+    cols = width;
+    rows = width;
+    boardSize = width * rows;
+    objects = Array(boardSize)
+}
+
 function createBlock(parentObject, size, objectIndex) {
     let component = Qt.createComponent("qrc:/Block.qml");
     let properties;

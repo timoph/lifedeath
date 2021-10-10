@@ -18,45 +18,20 @@ Window {
         color: "#000"
     }
 
-    Grid {
+    Loader {
         id: board
         anchors.left: parent.left
         anchors.leftMargin: 5
         width: 480
         height: 480
-        columns: Script.cols
+        source: "qrc:/Board.qml"
 
-        Repeater {
-            id: repeater
-            model: board.columns * Script.rows
-
-            Rectangle {
-                id: blockContainer
-                width: board.width / board.columns
-                height: width
-                border.width: appWindow.simulationRunning ? 1 : 1
-                color: "#000"
-                border.color: "#222"
-
-                Component.onCompleted: Script.createBlock(blockContainer, width, index)
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: Script.toggleState(index)
-                    enabled: !appWindow.simulationRunning
-                }
-            }
+        function handleStopped() {
+            simulationRunning = false;
         }
 
-        Timer {
-            id: stepTimer
-            interval: 1000
-            repeat: true
-            onTriggered: {
-                if(Script.aliveCount() === 0) appWindow.simulationRunning = false
-                else Script.progress()
-            }
-            running: appWindow.simulationRunning
+        onLoaded: {
+            item.stopped.connect(handleStopped)
         }
     }
 
@@ -69,7 +44,10 @@ Window {
         anchors.left: board.right
         anchors.leftMargin: 5
         text: appWindow.simulationRunning ? "stop" : "start"
-        onClicked: appWindow.simulationRunning = !appWindow.simulationRunning
+        onClicked: {
+            board.item.simulationRunning = !board.item.simulationRunning
+            appWindow.simulationRunning = board.item.simulationRunning
+        }
     }
 
     Button {
@@ -80,10 +58,49 @@ Window {
         anchors.bottomMargin: 5
         anchors.left: board.right
         anchors.leftMargin: 5
-        text: "clear"
+        text: "clear and init"
         enabled: !simulationRunning
 
-        onClicked: Script.clear()
+        onClicked: {
+            Script.clear()
+            board.source = ""
+            Script.init(widthSpin.value)
+            board.source = "qrc:/Board.qml"
+        }
+    }
+
+    Row {
+        anchors.bottom: clearButton.top
+        anchors.bottomMargin: 5
+        anchors.left: board.right
+        anchors.leftMargin: 5
+        width: appWindow.width - board.width - 10
+        spacing: 5
+
+        Text {
+            id: colsText
+            text: "Grid size"
+            color: "#fff"
+            width: parent.width / 4
+            height: widthSpin.height
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        SpinBox {
+            id: widthSpin
+            width: parent.width - parent.width / 4
+            from: 10
+            to: 200
+            value: 30
+
+            contentItem: Text {
+                font: widthSpin.font
+                text: widthSpin.value + "x" + widthSpin.value
+                verticalAlignment: Qt.AlignVCenter
+                horizontalAlignment: Qt.AlignHCenter
+            }
+        }
     }
 
     Column {
@@ -94,7 +111,7 @@ Window {
         anchors.topMargin: 5
         width: startStopButton.width
         height: board.height - startStopButton.height - 10
-        spacing: 30
+        spacing: 20
 
         Text {
             width: parent.width
