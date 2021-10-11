@@ -39,7 +39,6 @@ Window {
     Loader {
         id: board
         anchors.left: parent.left
-        //anchors.leftMargin: 5
         width: appWindow.width - (appWindow.width / 2.5)
         height: width
         source: "qrc:/Board.qml"

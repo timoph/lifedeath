@@ -56,7 +56,6 @@ function toggleState(objectIndex) {
 function willLiveNextTurn(objectIndex) {
     let neighbours = [];
     neighbours = neighboursForIndex(objectIndex)
-    //console.log(neighbours)
     let cnt = 0;
     var listSize = neighbours.length
     if(listSize !== "undefined") {
@@ -77,7 +76,6 @@ function willLiveNextTurn(objectIndex) {
 }
 
 function neighboursForIndex(objectIndex) {
-    //TODO: test / fix this
     if(objectIndex === 0) {
         return [objectIndex + 1,
                 objectIndex + cols,
