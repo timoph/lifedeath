@@ -53,14 +53,28 @@ Window {
     }
 
     Button {
-        id: startStopButton
-        width: appWindow.width - board.width - 10
+        id: stepButton
+        width: startStopButton.width
         height: 40
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 5
         anchors.left: board.right
         anchors.leftMargin: 5
-        text: appWindow.simulationRunning ? "stop" : "start"
+        text: qsTr("Step forward")
+        enabled: !appWindow.simulationRunning
+        onClicked: {
+            Script.progress()
+        }
+    }
+
+    Button {
+        id: startStopButton
+        width: (appWindow.width - board.width - anchors.leftMargin) / 2 - anchors.leftMargin
+        height: 40
+        anchors.top: stepButton.top
+        anchors.left: stepButton.right
+        anchors.leftMargin: 5
+        text: appWindow.simulationRunning ? qsTr("Stop simulation") : qsTr("Run simulation")
         onClicked: {
             board.item.simulationRunning = !board.item.simulationRunning
             appWindow.simulationRunning = board.item.simulationRunning
@@ -69,13 +83,13 @@ Window {
 
     Button {
         id: clearButton
-        width: appWindow.width - board.width - 10
+        width: appWindow.width - board.width - 2 * anchors.leftMargin
         height: 40
         anchors.bottom: startStopButton.top
         anchors.bottomMargin: 5
         anchors.left: board.right
         anchors.leftMargin: 5
-        text: "clear and init"
+        text: qsTr("Clear and init")
         enabled: !simulationRunning
 
         onClicked: {
@@ -91,12 +105,12 @@ Window {
         anchors.bottomMargin: 5
         anchors.left: board.right
         anchors.leftMargin: 5
-        width: appWindow.width - board.width - 10
+        width: appWindow.width - board.width - 2 * anchors.leftMargin
         spacing: 5
 
         Text {
             id: colsText
-            text: "Grid size"
+            text: qsTr("Grid size")
             color: "#fff"
             width: parent.width / 4
             height: widthSpin.height
@@ -126,8 +140,8 @@ Window {
         anchors.leftMargin: 5
         anchors.top: parent.top
         anchors.topMargin: 5
-        width: startStopButton.width
-        height: board.height - startStopButton.height - 10
+        width: clearButton.width
+        height: board.height - startStopButton.height - 2 * anchors.leftMargin
         spacing: 20
 
         Text {
@@ -145,7 +159,7 @@ Window {
             font.pointSize: 12
             wrapMode: Text.WordWrap
             color: "#fff"
-            text: "* Any alive cell with fewer than two live neighbours dies to underpopulation."
+            text: qsTr("* Any alive cell with fewer than two live neighbours dies to underpopulation.")
         }
 
         Text {
@@ -154,7 +168,7 @@ Window {
             font.pointSize: 12
             wrapMode: Text.WordWrap
             color: "#fff"
-            text: "* Any alive cell with more than three live neighbours dies to overpopulation."
+            text: qsTr("* Any alive cell with more than three live neighbours dies to overpopulation.")
         }
 
         Text {
@@ -163,7 +177,7 @@ Window {
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
             color: "#fff"
-            text: "* Any alive cell with two or three live neighbours lives."
+            text: qsTr("* Any alive cell with two or three live neighbours lives.")
         }
 
         Text {
@@ -172,7 +186,7 @@ Window {
             font.pointSize: 12
             wrapMode: Text.WordWrap
             color: "#fff"
-            text: "* Any dead cell with exactly three live neighbours becomes alive by reproduction."
+            text: qsTr("* Any dead cell with exactly three live neighbours becomes alive by reproduction.")
         }
 
         Text {
@@ -181,7 +195,7 @@ Window {
             font.pointSize: 12
             wrapMode: Text.WordWrap
             color: "#fff"
-            text: "Select alive cells and click start to begin."
+            text: qsTr("Select alive cells and click start to begin.")
         }
     }
 }
