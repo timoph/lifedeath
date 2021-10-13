@@ -142,7 +142,7 @@ Window {
         anchors.topMargin: 5
         width: clearButton.width
         height: board.height - startStopButton.height - 2 * anchors.leftMargin
-        spacing: 20
+        spacing: 5
 
         Text {
             width: parent.width
