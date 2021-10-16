@@ -23,8 +23,10 @@ Rectangle {
     id: rootItem
     width: parent.width
     height: parent.height
+    anchors.centerIn: parent
     radius: 45
-    color: "#000"
+    color: "#0f0"
+    opacity: 0.0
     state: "dead"
 
     states: [
@@ -33,7 +35,8 @@ Rectangle {
             PropertyChanges {
                 target: rootItem
                 opacity: 0.8
-                color: "#0f0"
+                width: rootItem.parent.width
+                height: rootItem.parent.height
             }
         },
         State {
@@ -41,13 +44,31 @@ Rectangle {
             PropertyChanges {
                 target: rootItem
                 opacity: 0.0
+                width: 1
+                height: 1
             }
         }
     ]
 
-//    transitions: [
-//        Transition {
-//            NumberAnimation { properties: "opacity"; duration: 500}
-//        }
-//    ]
+    transitions: [
+        Transition {
+            from: "dead"
+            to: "alive"
+            ParallelAnimation {
+                NumberAnimation { properties: "width"; duration: 500}
+                NumberAnimation { properties: "height"; duration: 500}
+            }
+        },
+        Transition {
+            from: "alive"
+            to: "dead"
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation { properties: "width"; duration: 300}
+                    NumberAnimation { properties: "height"; duration: 300}
+                }
+                NumberAnimation { properties: "opacity"; duration: 0}
+            }
+        }
+    ]
 }
