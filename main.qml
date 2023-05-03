@@ -45,6 +45,7 @@ Window {
 
         function handleStopped() {
             simulationRunning = false;
+            Script.simRunning = false;
         }
 
         onLoaded: {
@@ -78,7 +79,7 @@ Window {
         onClicked: {
             board.item.simulationRunning = !board.item.simulationRunning
             appWindow.simulationRunning = board.item.simulationRunning
-            Script.simRunning = board.item.simulationRunning
+            Script.simRunning = !Script.simRunning
         }
     }
 
