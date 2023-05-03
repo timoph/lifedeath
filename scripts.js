@@ -22,7 +22,8 @@ var rows = 30;
 var cols = 30;
 
 var boardSize = rows * cols;
-var objects = Array(boardSize)
+var objects = Array(boardSize);
+var simRunning = false;
 
 function init(width) {
     cols = width;

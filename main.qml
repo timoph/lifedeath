@@ -78,6 +78,7 @@ Window {
         onClicked: {
             board.item.simulationRunning = !board.item.simulationRunning
             appWindow.simulationRunning = board.item.simulationRunning
+            Script.simRunning = board.item.simulationRunning
         }
     }
 

@@ -55,8 +55,8 @@ Rectangle {
             from: "dead"
             to: "alive"
             ParallelAnimation {
-                NumberAnimation { properties: "width"; duration: 500}
-                NumberAnimation { properties: "height"; duration: 500}
+                NumberAnimation { properties: "width"; duration: Script.simRunning ? 500 : 0}
+                NumberAnimation { properties: "height"; duration: Script.simRunning ? 500 : 0}
             }
         },
         Transition {
